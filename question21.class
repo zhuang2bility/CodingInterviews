@@ -1,0 +1,40 @@
+import java.util.ArrayList;
+/**
+public class TreeNode {
+    int val = 0;
+    TreeNode left = null;
+    TreeNode right = null;
+
+    public TreeNode(int val) {
+        this.val = val;
+
+    }
+
+}
+*/
+public class Solution {
+    public ArrayList<ArrayList<Integer>> FindPath(TreeNode root,int target) {
+        ArrayList<ArrayList<Integer>> ar=new ArrayList<ArrayList<Integer>>();
+        if(root==null) return ar;
+        ArrayList<Integer> al=new ArrayList<Integer>();
+        int sum=0;
+        pa(root,target,ar,al,sum);
+        return ar;
+    }
+    public void pa(TreeNode root,int target,ArrayList<ArrayList<Integer>> ar,ArrayList<Integer> al,int sum){
+      if(root==null) return ;
+        sum+=root.val;
+        if(root.left==null&&root.right==null){
+            if(sum==target)
+                { al.add(root.val);
+                ar.add(new ArrayList<Integer>(al));
+                al.remove(al.size()-1);
+            }
+            return ;
+        }
+        al.add(root.val);
+        pa(root.left,target,ar,al,sum);
+        pa(root.right,target,ar,al,sum);
+        al.remove(al.size()-1); 
+	}
+}
