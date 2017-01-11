@@ -1,0 +1,28 @@
+import java.util.*;
+public class Solution {
+    public boolean isContinuous(int [] numbers) {
+		int len=numbers.length;
+        if(numbers==null||len<1){
+            return false;
+        }
+        Arrays.sort(numbers);
+        int zero=0,i=0;
+        for(;i<len&&numbers[i]==0;i++){
+            zero++;
+        }
+        for(;i<len-1&&zero>=0;i++){
+            if(numbers[i]==numbers[i+1]){
+                return false;
+            }
+            if(numbers[i] + 1 + zero >= numbers[i+1]){ 
+                zero -= numbers[i+1] - numbers[i] - 1;
+            }
+            else{return false;}
+        }
+        if(i==len-1){
+            return true;
+        }else{
+            return false;
+        }
+    }
+}
