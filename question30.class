@@ -1,0 +1,21 @@
+public class Solution {
+    public int GetUglyNumber_Solution(int index) {
+        if(index<=0) return 0;
+        int[] uglys=new int[index];
+        int count=0;
+        int i2=0,i3=0,i5=0;
+        int tmp=0;
+        uglys[0]=1;
+        while(count<index-1){
+            tmp=min(uglys[i2]*2,min(uglys[i3]*3,uglys[i5]*5));
+            if(tmp==uglys[i2]*2) i2++;
+            if(tmp==uglys[i3]*3) i3++;
+            if(tmp==uglys[i5]*5) i5++;
+            uglys[++count]=tmp;
+        }
+        return uglys[index-1];
+    }
+    private int min(int a,int b){
+        return (a>b)?b:a;
+    }
+}
