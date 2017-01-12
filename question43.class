@@ -1,0 +1,19 @@
+public class Solution {
+    public int StrToInt(String str) {
+        if(str.equals("")||str.length()==0){return 0;}
+        char[] array=str.toCharArray();
+        int symbol=0;
+        if(array[0]=='-') symbol=1;
+        int sum=0;
+        for(int i=symbol;i<array.length;i++){
+            if(array[i]=='+'){
+                continue;
+            }
+            if(array[i]<48||array[i]>57){
+                return 0;
+            }
+            sum=sum*10+array[i]-48;
+        }
+        return (symbol==0)?sum:sum*(-1);
+    }
+}
